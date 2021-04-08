@@ -1,4 +1,5 @@
 import discord
+import asyncio
 
 from Games.TicTacToe import TicTacToe
 from src.youtubeAPI import YouTubeHandler
@@ -22,6 +23,13 @@ class PetThePanda(discord.Client):
     async def on_ready(self):
         print(self.user.name+ " is ready")
 
+    async def status_task(self):
+        await self.change_presence(activity=discord.Game("Mit dir"), status=discord.Status.online)
+        await asyncio.sleep(5)
+        await asyncio.sleep(5)
+        await self.change_presence(activity=discord.Game("Pandas"), status=discord.Status.online)
+
+    #TODO Custom Reactions
     async def authorReactions(self, author, message):
         if self.reactToMessageAuthors[0] == author:
             await message.add_reaction('<:UGAY:642807039780716604>')
