@@ -5,8 +5,11 @@ from dotenv import load_dotenv
 from src.PetThePanda import PetThePanda
 
 def main():
-    client = PetThePanda()
-    
+    intents = discord.Intents.default()
+    intents.members = True
+
+    client = PetThePanda(intents=intents)
+
     load_dotenv()
     client.run(os.getenv('DISCORD_TOKEN')) 
 
