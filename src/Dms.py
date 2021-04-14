@@ -1,4 +1,4 @@
-from discord import User, channel, Emoji
+from discord import User
 
 class Dms():
     async def sendDmTo(message):
