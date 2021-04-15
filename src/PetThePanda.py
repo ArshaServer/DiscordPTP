@@ -61,8 +61,8 @@ class PetThePanda(discord.Client):
         if self.commands["TicTacToeNextTurn"] in message.content:
             await self.ticTacToe.next_turn(message)
         if self.commands["sendDmTo"] in message.content:
-            await Dms.sendDmTo(message)
+            await Dms.sendDmTo(message=message)
         if self.commands["inspireMe"] in message.content:
-            await Inspirator.getImage(message)    
+            await Inspirator.getImage(message=message)    
         if self.commands["kickRandom"] in message.content:
             await Channel.kickRandom(message)

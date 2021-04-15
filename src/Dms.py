@@ -1,7 +1,7 @@
 from discord import User
 
 class Dms():
-    async def sendDmTo(self,message):
+    async def sendDmTo(message):
         args = message.content.split(' ', 2)
         try:
             if(message.author.dm_channel == None):

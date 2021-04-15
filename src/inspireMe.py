@@ -5,7 +5,7 @@ from discord import Intents
 from discord import File
 
 class Inspirator():
-    def wrap_text(self,text, width, font):
+    def wrap_text(text, width, font):
         text_lines = []
         text_line = []
         text = text.replace('\n', ' [br] ')
@@ -28,7 +28,7 @@ class Inspirator():
 
         return "\n".join( text_lines)
 
-    async def getImage(self,message):
+    async def getImage(message):
         args = message.content.split(' ', 2)
         try:
             if(message.author.dm_channel == None):
