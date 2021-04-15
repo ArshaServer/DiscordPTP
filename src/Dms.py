@@ -10,3 +10,4 @@ class Dms():
             await message.add_reaction("\U00002705")
         except AttributeError:
             print("No User named {0} on this Server".format(args[1]))        
+            await message.add_reaction("\U0000274C")
