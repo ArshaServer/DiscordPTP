@@ -10,7 +10,6 @@ class Inspirator():
         text_line = []
         text = text.replace('\n', ' [br] ')
         words = text.split()
-        font_size = font.getsize(text)
 
         for word in words:
             if word == '[br]':
@@ -18,7 +17,7 @@ class Inspirator():
                 text_line = []
                 continue
             text_line.append(word)
-            w, h = font.getsize(' '.join(text_line))
+            w = font.getsize(' '.join(text_line))
             if w > width:
                 text_line.pop()
                 text_lines.append(' '.join(text_line))
