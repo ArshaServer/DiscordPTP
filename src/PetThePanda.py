@@ -68,12 +68,9 @@ class PetThePanda(discord.Client):
             await inspire.getImage(message=message)    
         if self.commands["kickRandom"] in message.content:
             await Channel.kickRandom(message)
-<<<<<<< HEAD
+
+        if self.commands["UWUTranslator"] in message.content:
+            await UWU.translation(message)
         else:
             inspire.add_autism(message.content)
             await message.channel.send(file=discord.File("src/data/autism.png"))
-
-=======
-        if self.commands["UWUTranslator"] in message.content:
-            await UWU.translation(message)
->>>>>>> origin/main
