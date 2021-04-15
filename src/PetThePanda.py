@@ -1,11 +1,10 @@
 import discord
 import asyncio
 
-from discord.flags import Intents
-
 from src.Dms import Dms
 from src.Games.TicTacToe import TicTacToe
 from src.youtubeAPI import YouTubeHandler
+from src.Channel import Channel
 
 class PetThePanda(discord.Client):
     commands = {
@@ -13,7 +12,8 @@ class PetThePanda(discord.Client):
         "CommandsList" : '!INeedSomeHelp',
         "TicTacToe" : "!start TicTacToe",
         "TicTacToeNextTurn" : "!next ",
-        "sendDmTo" : "!send "
+        "sendDmTo" : "!send ",
+        "kickRandom" : "!ksr"
     }
     reactToMessageAuthors = [
         "Madafii",
@@ -25,7 +25,7 @@ class PetThePanda(discord.Client):
         self.ticTacToe = TicTacToe()
 
     async def on_ready(self):
-        print(self.user.name+ " is ready")
+        print(self.user.name + " is ready")
 
     async def status_task(self):
         await self.change_presence(activity=discord.Game("Mit dir"), status=discord.Status.online)
@@ -50,7 +50,7 @@ class PetThePanda(discord.Client):
             helpEmbed = discord.Embed(title='You need some help?',
                                     description='Here I give help:',
                                     color=0x22a7f0)
-            helpEmbed.add_field(name='Commands:', value=self.commands.values, inline=True)
+            helpEmbed.add_field(name='Commands:', value=list(self.commands.values()), inline=True)
             await message.channel.send(embed=helpEmbed)
         if message.author.display_name in self.reactToMessageAuthors:
             await self.authorReactions(message.author.display_name, message)
@@ -60,12 +60,5 @@ class PetThePanda(discord.Client):
             await self.ticTacToe.next_turn(message)
         if self.commands["sendDmTo"] in message.content:
             await Dms.sendDmTo(message)
-
-    
-
-        
-
-
-           
-        
-    
+        if self.commands["kickRandom"] in message.content:
+            await Channel.kickRandom(message)
