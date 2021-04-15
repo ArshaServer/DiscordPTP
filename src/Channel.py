@@ -13,9 +13,9 @@ class Channel():
             return
         try:
             rand = random.randint(0, len(message.author.voice.channel.members)-1)
-            print(rand)
             for channel in message.guild.voice_channels:
                 if(channel.name == "AFK"):
                     await message.author.voice.channel.members[rand].move_to(None)
+                    await message.channel.send("bye {0}".message.author.voice.channel.members[rand])
         except RuntimeError:
             print("Konnte niemanden kicken")

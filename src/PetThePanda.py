@@ -6,6 +6,7 @@ from src.Games.TicTacToe import TicTacToe
 from src.youtubeAPI import YouTubeHandler
 import src.inspireMe as inspire
 from src.Channel import Channel
+from src.UWU import UWU
 
 class PetThePanda(discord.Client):
     commands = {
@@ -15,7 +16,8 @@ class PetThePanda(discord.Client):
         "TicTacToeNextTurn" : "!next ",
         "sendDmTo" : "!send ",
         "inspireMe" : "!inspire ",
-        "kickRandom" : "!ksr"
+        "kickRandom" : "!ksr",
+        "UWUTranslator" : "!uwu "
     }
     reactToMessageAuthors = [
         "Madafii",
@@ -61,12 +63,17 @@ class PetThePanda(discord.Client):
         if self.commands["TicTacToeNextTurn"] in message.content:
             await self.ticTacToe.next_turn(message)
         if self.commands["sendDmTo"] in message.content:
-            await Dms.sendDmTo(message=message)
+            await Dms.sendDmTo(message)
         if self.commands["inspireMe"] in message.content:
             await inspire.getImage(message=message)    
         if self.commands["kickRandom"] in message.content:
             await Channel.kickRandom(message)
+<<<<<<< HEAD
         else:
             inspire.add_autism(message.content)
             await message.channel.send(file=discord.File("src/data/autism.png"))
 
+=======
+        if self.commands["UWUTranslator"] in message.content:
+            await UWU.translation(message)
+>>>>>>> origin/main
