@@ -48,29 +48,29 @@ class PetThePanda(discord.Client):
     async def on_message(self, message):
         if message.author.bot:
             return
-        if self.commands["PetThePeepo"] in message.content:
+        elif self.commands["PetThePeepo"] in message.content:
             await message.channel.send(YouTubeHandler.petThePeepo(self))
-        if self.commands["CommandsList"] in message.content:
+        elif self.commands["CommandsList"] in message.content:
             helpEmbed = discord.Embed(title='You need some help?',
                                     description='Here I give help:',
                                     color=0x22a7f0)
             helpEmbed.add_field(name='Commands:', value=list(self.commands.values()), inline=True)
             await message.channel.send(embed=helpEmbed)
-        if message.author.display_name in self.reactToMessageAuthors:
+        elif message.author.display_name in self.reactToMessageAuthors:
             await self.authorReactions(message.author.display_name, message)
-        if self.commands["TicTacToe"] in message.content:
+        elif self.commands["TicTacToe"] in message.content:
             await self.ticTacToe.restart(message)
-        if self.commands["TicTacToeNextTurn"] in message.content:
+        elif self.commands["TicTacToeNextTurn"] in message.content:
             await self.ticTacToe.next_turn(message)
-        if self.commands["sendDmTo"] in message.content:
+        elif self.commands["sendDmTo"] in message.content:
             await Dms.sendDmTo(message)
-        if self.commands["inspireMe"] in message.content:
+        elif self.commands["inspireMe"] in message.content:
             await inspire.getImage(message=message)    
-        if self.commands["kickRandom"] in message.content:
+        elif self.commands["kickRandom"] in message.content:
             await Channel.kickRandom(message)
 
-        if self.commands["UWUTranslator"] in message.content:
+        elif self.commands["UWUTranslator"] in message.content:
             await UWU.translation(message)
-        else:
+        elif message.channel.name=="bot":
             inspire.add_autism(message.content)
             await message.channel.send(file=discord.File("src/data/autism.png"))
