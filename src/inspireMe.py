@@ -4,8 +4,7 @@ from discord import User
 from discord import Intents
 from discord import File
 
-class Inspirator():
-    def wrap_text(text, width, font):
+def wrap_text(text, width, font):
         text_lines = []
         text_line = []
         text = text.replace('\n', ' [br] ')
@@ -28,6 +27,7 @@ class Inspirator():
 
         return "\n".join( text_lines)
 
+class Inspirator():
     async def getImage(message):
         args = message.content.split(' ', 2)
         try:
@@ -44,7 +44,7 @@ class Inspirator():
 
             # draw multiline text
             d.multiline_text((10,10), "Ein {0} sagte eins:".format(message.author.name), font=fnt1, fill=(0, 0, 0))
-            d.multiline_text((10,50), self.wrap_text(args[2],600,fnt2), font=fnt2, fill=(0, 0, 0))
+            d.multiline_text((10,50), wrap_text(args[2],600,fnt2), font=fnt2, fill=(0, 0, 0))
             
             out.save("data/img.png","png")
             with open('data/img.png', 'rb') as f:
