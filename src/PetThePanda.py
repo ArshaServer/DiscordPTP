@@ -1,10 +1,10 @@
 import discord
 import asyncio
 
-from Dms import Dms
+import Dms as Dms
 from Games.TicTacToe import TicTacToe
 from youtubeAPI import YouTubeHandler
-from inspireMe import Inspirator
+import inspireMe as inspire
 from Channel import Channel
 
 class PetThePanda(discord.Client):
@@ -63,6 +63,6 @@ class PetThePanda(discord.Client):
         if self.commands["sendDmTo"] in message.content:
             await Dms.sendDmTo(message=message)
         if self.commands["inspireMe"] in message.content:
-            await Inspirator.getImage(message=message)    
+            await inspire.getImage(message=message)    
         if self.commands["kickRandom"] in message.content:
             await Channel.kickRandom(message)
