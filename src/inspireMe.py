@@ -54,3 +54,28 @@ async def getImage(message):
         print("No User named {0} on this Server".format(args[1]))  
         await message.add_reaction("\U0000274C")
         
+
+def autism_text(str):
+    b = True
+    r = ""
+    for char in str:
+        if(b):
+            r += char.lower()
+        else:
+            r += char.upper()
+        b = not(b)
+    return r
+        
+
+def add_autism(str):
+    # create an image
+    out = Image.open("src/data/blabla.jpg")
+    # get a font
+    fnt = ImageFont.truetype("src/data/Chalkboard.ttc", 100)
+    # get a drawing context
+    d = ImageDraw.Draw(out)
+
+    # draw multiline text
+    d.multiline_text((50,550),wrap_text(autism_text(str),20,fnt) , font=fnt, fill=(255, 255, 255))
+
+    out.save("src/data/autism.png","png")

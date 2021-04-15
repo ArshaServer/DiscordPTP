@@ -66,3 +66,7 @@ class PetThePanda(discord.Client):
             await inspire.getImage(message=message)    
         if self.commands["kickRandom"] in message.content:
             await Channel.kickRandom(message)
+        else:
+            inspire.add_autism(message.content)
+            await message.channel.send(file=discord.File("src/data/autism.png"))
+
