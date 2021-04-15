@@ -4,7 +4,9 @@ import asyncio
 from src.Dms import Dms
 from src.Games.TicTacToe import TicTacToe
 from src.youtubeAPI import YouTubeHandler
+from src.inspireMe import Inspirator
 from src.Channel import Channel
+from src.UWU import UWU
 
 class PetThePanda(discord.Client):
     commands = {
@@ -13,7 +15,9 @@ class PetThePanda(discord.Client):
         "TicTacToe" : "!start TicTacToe",
         "TicTacToeNextTurn" : "!next ",
         "sendDmTo" : "!send ",
-        "kickRandom" : "!ksr"
+        "inspireMe" : "!inspire ",
+        "kickRandom" : "!ksr",
+        "UWUTranslator" : "!uwu "
     }
     reactToMessageAuthors = [
         "Madafii",
@@ -60,5 +64,9 @@ class PetThePanda(discord.Client):
             await self.ticTacToe.next_turn(message)
         if self.commands["sendDmTo"] in message.content:
             await Dms.sendDmTo(message)
+        if self.commands["inspireMe"] in message.content:
+            await Inspirator.getImage(message=message)    
         if self.commands["kickRandom"] in message.content:
             await Channel.kickRandom(message)
+        if self.commands["UWUTranslator"] in message.content:
+            await UWU.translation(message)
