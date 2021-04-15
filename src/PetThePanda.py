@@ -63,6 +63,6 @@ class PetThePanda(discord.Client):
         if self.commands["sendDmTo"] in message.content:
             await Dms.sendDmTo(message)
         if self.commands["inspireMe"] in message.content:
-            await inspireMe.getImage(message)    
+            await Inspirator.getImage(message)    
         if self.commands["kickRandom"] in message.content:
             await Channel.kickRandom(message)
