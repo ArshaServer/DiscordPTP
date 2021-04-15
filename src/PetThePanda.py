@@ -1,11 +1,11 @@
 import discord
 import asyncio
 
-from Dms import Dms
-from Games.TicTacToe import TicTacToe
-from youtubeAPI import YouTubeHandler
-from inspireMe import Inspirator
-from Channel import Channel
+from src.Dms import Dms
+from src.Games.TicTacToe import TicTacToe
+from src.youtubeAPI import YouTubeHandler
+from src.inspireMe import Inspirator
+from src.Channel import Channel
 
 class PetThePanda(discord.Client):
     commands = {
