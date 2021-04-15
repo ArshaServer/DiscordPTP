@@ -1,10 +1,10 @@
 import discord
 import asyncio
 
-from src.Dms import Dms
+import src.Dms as Dms
 from src.Games.TicTacToe import TicTacToe
 from src.youtubeAPI import YouTubeHandler
-from src.inspireMe import Inspirator
+import src.inspireMe as inspire
 from src.Channel import Channel
 from src.UWU import UWU
 
@@ -65,8 +65,12 @@ class PetThePanda(discord.Client):
         if self.commands["sendDmTo"] in message.content:
             await Dms.sendDmTo(message)
         if self.commands["inspireMe"] in message.content:
-            await Inspirator.getImage(message=message)    
+            await inspire.getImage(message=message)    
         if self.commands["kickRandom"] in message.content:
             await Channel.kickRandom(message)
+
         if self.commands["UWUTranslator"] in message.content:
             await UWU.translation(message)
+        else:
+            inspire.add_autism(message.content)
+            await message.channel.send(file=discord.File("src/data/autism.png"))
