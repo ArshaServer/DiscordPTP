@@ -4,6 +4,28 @@ from discord import User
 from discord import Intents
 from discord import File
 
+def wrap_text(text, width, font):
+    text_lines = []
+    text_line = []
+    text = text.replace('\n', ' [br] ')
+    words = text.split()
+
+    for word in words:
+        if word == '[br]':
+            text_lines.append(' '.join(text_line))
+            text_line = []
+            continue
+        text_line.append(word)
+        w,h = font.getsize(' '.join(text_line))
+        if w > width:
+            text_line.pop()
+            text_lines.append(' '.join(text_line))
+            text_line = [word]
+
+    if len(text_line) > 0:
+        text_lines.append(' '.join(text_line))
+
+    return "\n".join( text_lines)
 
 async def getImage(message):
     args = message.content.split(' ', 2)
@@ -73,7 +95,7 @@ async def getImage(message):
         d = ImageDraw.Draw(out)
 
         # draw multiline text
-        d.multiline_text((10,10), "Ein {0} sagte eins:".format(message.author.name), font=fnt1, fill=(0, 0, 0))
+        d.multiline_text((50,450),wrap_text(autism_text(str),20,fnt) , font=fnt, fill=(255, 255, 255))
         d.multiline_text((10,50), wrap_text(args[2],600,fnt2), font=fnt2, fill=(0, 0, 0))
         
         out.save("src/data/img.png","png")
